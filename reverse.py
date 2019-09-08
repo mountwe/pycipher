@@ -1,7 +1,7 @@
 # Reverse Cipher
 # https://www.nostarch.com/crackingcodes/ (BSD License)
 
-input = "Type in a message to be printed out reversed: "
+message = input("Type in a message to be printed out reversed: ")
 translated = ''
 
 i = len(message) - 1
