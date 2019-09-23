@@ -11,7 +11,6 @@ def main():
       -Alan Turing"""
     myKey = 2894
     myMode = 'encrypt'  # Set to either 'encrypt' or 'decrypt'.
-    translated = ''
 
     if myMode == 'encrypt':
         translated = encryptMessage(myKey, myMessage)
@@ -35,12 +34,10 @@ def checkKeys(keyA, keyB, mode):
         sys.exit('Cipher is weak if key A is 1. Choose a different key.')
     if keyB == 0 and mode == 'encrypt':
         sys.exit('Cipher is weak if key B is 0. Choose a different key.')
-    if keyA < 0 or keyB > len(SYMBOLS) - 1:
-        sys.exit('Key A must be greater than 0 and Key B must be between \
-                0 and %s.' % (len(SYMBOLS) - 1))
+    if keyA < 0 or keyB < 0 or keyB > len(SYMBOLS) - 1:
+        sys.exit('Key A must be greater than 0 and Key B must be between 0 and %s.' % (len(SYMBOLS) - 1))
     if cryptomath.gcd(keyA, len(SYMBOLS)) != 1:
-        sys.exit('Key A (%s) and the symbol set size (%s) are not \
-                relatively prime. Choose a different key.' % (keyA, \
+        sys.exit('Key A (%s) and the symbol set size (%s) are not relatively prime. Choose a different key.' % (keyA, 
                 len(SYMBOLS)))
 
 
@@ -67,7 +64,7 @@ def decryptMessage(key, message):
         if symbol in SYMBOLS:
             # Decrypt the symbol:
             symbolIndex = SYMBOLS.find(symbol)
-            plaintext += SYMBOLS[(symbolIndex - keyB) * \
+            plaintext += SYMBOLS[(symbolIndex - keyB) * 
                     modInverseofKeyA % len(SYMBOLS)]
         else:
             plaintext += symbol  # Append the symbol without decrypting.
