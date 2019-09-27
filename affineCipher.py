@@ -63,7 +63,7 @@ def decryptMessage(key, message):
             # Decrypt the symbol:
             symbolIndex = SYMBOLS.find(symbol)
             plaintext += SYMBOLS[(symbolIndex - keyB) * 
-                    modInverseofKeyA % len(SYMBOLS)]
+                    modInverseOfKeyA % len(SYMBOLS)]
         else:
             plaintext += symbol  # Append the symbol without decrypting.
     return plaintext
